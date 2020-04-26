@@ -1,3 +1,3 @@
 <?php
 
-echo "Hello <strong>wworld</strong> ! - Iniciando...";
+echo "Hello <strong>Wworld</strong> ! - Iniciando...";
