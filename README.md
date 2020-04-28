@@ -1,1 +1,1 @@
-# hello_world
+# Exemplos e projetos desenvolvidos no Curso completo PHP 7 da Udemy
