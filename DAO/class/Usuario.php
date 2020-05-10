@@ -50,6 +50,8 @@ class Usuario {
         if(isset($results[0])){
 
             $this->setData($results[0]);
+        } else {
+            $this->setData(null);
         }
 
     }
@@ -112,6 +114,39 @@ class Usuario {
 
         }
 
+    }
+
+    public function update($login, $senha){
+
+        $this->setDeslogin($login);
+        $this->setDessenha($senha);
+
+        $sql = new Sql();
+        $sql->query("UPDATE tb_usuarios set deslogin = :LOGIN, dessenha = :SENHA WHERE IDUSUARIO = :ID ", array(
+            ':LOGIN'=>$this->getDeslogin(),
+            ':SENHA'=>$this->getDessenha(),
+            ':ID'=>$this->getIdusuario()
+        ));
+
+        $this->loadbyId($this->getIdusuario());
+
+    }
+
+    public function delete(){
+
+        $sql = new Sql();
+        $sql->query("DELETE FROM tb_usuarios where idusuario = :ID",array(
+            ':ID'=>$this->getIdusuario()
+        ));
+
+        $this->loadbyId($this->getIdusuario());
+
+    }
+
+    public function __construct($login="", $senha="") {
+
+        $this->setDeslogin($login);
+        $this->setDessenha($senha);
     }
 
     public function __toString() {
