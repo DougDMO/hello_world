@@ -46,8 +46,8 @@ echo json_encode($usuarios);
 
 //Deletar um usuário
 
-$usuario = new Usuario();
-$usuario->loadbyId(27);
-echo $usuario . "<br>";
-$usuario->delete();
-echo $usuario;
+//$usuario = new Usuario();
+//$usuario->loadbyId(27);
+//echo $usuario . "<br>";
+//$usuario->delete();
+//echo $usuario;
