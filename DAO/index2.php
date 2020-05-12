@@ -13,23 +13,34 @@ $DOM = new DOMDocument;
 @$DOM->loadHTML($conteudoSite);
 $XPath = new DomXPath($DOM);
 
-$papel = "VVAR3";
+$papeis = array();
+$linha = array();
 
-for ($i=1;$i<=886;$i++) {
-    $divs = $XPath->query('//*[@id="resultado"]/tbody/tr[' . $i . ']/td[1]/span/a');
+$headers = array();
 
-    foreach ($divs as $div) {
+for ($j = 1; $j <= 21; $j++) {
 
-        if ($div->nodeValue==$papel) {
-            echo $div->nodeValue;
-            echo '<br>';
+    $titulo = $XPath->query('//*[@id="resultado"]/thead/tr/th[' . $j . ']/a');
 
-            $pvps = $XPath->query('//*[@id="resultado"]/tbody/tr[' . $i . ']/td[4]');
-            foreach ($pvps as $pvp) {
-                echo $pvp->nodeValue;
-            }
+    foreach ($titulo as $tit) {
 
-        }
+        $headers[$j] = $tit->nodeValue;
 
     }
 }
+
+for ($i = 1; $i <= 886; $i++) {
+    for ($c = 1; $c <= 21; $c++) {
+
+        $divs = $XPath->query('//*[@id="resultado"]/tbody/tr[' . $i . ']/td[' . $c . ']');
+
+        foreach ($divs as $div) {
+
+            $linha[$headers[$c]] = [$div->nodeValue];
+
+        }
+    }
+    array_push($papeis, $linha);
+}
+
+echo json_encode($papeis);
