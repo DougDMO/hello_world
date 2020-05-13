@@ -4,9 +4,9 @@ class Sql extends PDO {
 
     private $conn;
 
-    public function __construct() {
+    public function __construct($db="banco_php") {
 
-        $this->conn = new PDO("sqlsrv:Database=banco_php;server=DOT191NB\SQLEXPRESS;ConnectionPooling=0","php","master");
+        $this->conn = new PDO("sqlsrv:Database=$db;server=DOT191NB\SQLEXPRESS;ConnectionPooling=0","php","master");
     }
 
     private function setParams($statement, $parameters = array()){
